@@ -1,28 +1,156 @@
 <form id="docForm">
 
-  <h3>Dati Destinatario</h3>
-  <input name="nome" placeholder="Nome e Cognome destinatario" required><br><br>
-  <input name="codice" placeholder="Codice identificativo" required><br><br>
-  <input name="grado" placeholder="Ruolo / Qualifica / Grado"><br><br>
-  <input name="ente" placeholder="Agenzia / Reparto di appartenenza"><br><br>
+<h3>Dati Emittente (Autorità Disciplinare)</h3>
 
-  <h3>Dati Procedimento</h3>
-  <input name="protocollo" placeholder="Numero di Protocollo (opzionale)"><br><br>
-  <input name="data_emissione" placeholder="Data di emissione (gg/mm/aaaa)"><br><br>
-  <input name="data_rilascio" placeholder="Data contestazione"><br><br>
-  <input name="id_discord" placeholder="PEC / ID Discord"><br><br>
+  <label>Nome e Cognome</label><br>
+  <input type="text" name="nome_emittente" placeholder="Nome e Cognome Autorità Emittente" required>
+  <br><br>
 
-  <h3>Descrizione</h3>
-  <textarea name="motivazione" rows="5" placeholder="Descrizione della condotta"></textarea><br><br>
+  <label>Titolo / Grado / Funzione</label><br>
+  <input type="text" name="grado_emittente" placeholder="Grado o funzione dell’autorità">
+  <br><br>
 
-  <h3>Sanzione</h3>
-  <select name="sanzione">
-    <option>Richiamo scritto (Censura formale)</option>
-    <option>Ammonimento ufficiale (Warning)</option>
-    <option>Sospensione dal servizio senza retribuzione per n. ___ giorni</option>
-    <option>Licenziamento disciplinare (Termination of Employment)</option>
-    <option>Accettazione di dimissioni volontarie (Voluntary Separation)</option>
-  </select><br><br>
+  <label>Agenzia / Dipartimento / Ufficio</label><br>
+  <input type="text" name="ente_emittente" placeholder="Ente o Dipartimento emittente">
+  <br><br>
+
+  <label>Numero identificativo / Badge</label><br>
+  <input type="text" name="badge_emittente" placeholder="Numero badge / identificativo">
+  <br><br>
+
+
+ <h3>Dati Destinatario</h3>
+
+  <label>Nome e Cognome</label><br>
+  <input type="text" name="nome_cognome" placeholder="Nome e Cognome del destinatario" required>
+  <br><br>
+
+  <label>Codice Identificativo</label><br>
+  <input type="text" name="codice_identificativo" placeholder="Codice identificativo ricevente" required>
+  <br><br>
+
+  <label>Ruolo / Qualifica / Grado</label><br>
+  <input type="text" name="grado_destinatario" placeholder="Grado o qualifica del destinatario">
+  <br><br>
+
+  <label>Agenzia / Reparto di appartenenza</label><br>
+  <input type="text" name="ente_appartenenza" placeholder="Ente o reparto di appartenenza">
+  <br><br>
+
+
+<h3>Dati Procedimento</h3>
+
+  <label>Numero di Protocollo</label><br>
+  <input type="text" name="protocollo" placeholder="Protocollo n. (lascia vuoto per automatico)">
+  <br><br>
+
+  <label>Data di emissione</label><br>
+  <input type="text" name="data_emissione" placeholder="gg/mm/aaaa">
+  <br><br>
+
+  <label>Data di rilascio / contestazione</label><br>
+  <input type="text" name="data_rilascio" placeholder="gg/mm/aaaa">
+  <br><br>
+
+  <label>PEC / ID Discord</label><br>
+  <input type="text" name="id_discord" placeholder="PEC o ID Discord destinatario">
+  <br><br>
+
+
+<h3>Descrizione della condotta</h3>
+
+  <label>Descrizione dettagliata dei fatti contestati</label><br>
+  <textarea 
+    name="motivazione"
+    rows="6"
+    placeholder="Inserire una descrizione chiara, completa e formale della condotta accertata"
+  ></textarea>
+  <br><br>
+
+
+<h3>Sanzione disciplinare</h3>
+
+  <label>
+    <input type="radio" name="sanzione" value="Richiamo scritto (Censura formale)">
+    Richiamo scritto (Censura formale)
+  </label><br>
+
+  <label>
+    <input type="radio" name="sanzione" value="Ammonimento ufficiale (Warning)" checked>
+    Ammonimento ufficiale (Warning)
+  </label><br>
+
+  <label>
+    <input type="radio" name="sanzione" value="Sospensione dal servizio senza retribuzione">
+    Sospensione dal servizio senza retribuzione
+  </label>
+  <input type="text" name="giorni_sospensione" placeholder="n. giorni" style="width:120px;">
+  <br>
+
+  <label>
+    <input type="radio" name="sanzione" value="Licenziamento disciplinare (Termination of Employment)">
+    Licenziamento disciplinare (Termination of Employment)
+  </label><br>
+
+  <label>
+    <input type="radio" name="sanzione" value="Accettazione di dimissioni volontarie (Voluntary Separation)">
+    Accettazione di dimissioni volontarie (Voluntary Separation)
+  </label><br><br>
+
+<h3>Modalità di notificazione</h3>
+
+  <label>
+    <input type="radio" name="notifica" value="Consegna personale diretta">
+    Consegna personale diretta, con sottoscrizione per ricevuta
+  </label><br>
+
+  <label>
+    <input type="radio" name="notifica" value="Posta raccomandata certificata">
+    Invio tramite posta raccomandata certificata con ricevuta di ritorno
+  </label><br>
+
+  <label>
+    <input type="radio" name="notifica" value="Trasmissione elettronica sicura">
+    Trasmissione elettronica sicura (sistema e-mail ufficiale / PEC)
+  </label><br>
+
+  <label>
+    <input type="radio" name="notifica" value="Deposito presso Ufficio Risorse Umane">
+    Deposito ufficiale presso l’Ufficio Risorse Umane
+  </label><br><br>
+
+<h3>Sottoscrizioni finali</h3>
+
+  <h4>Autorità Disciplinare</h4>
+
+  <label>Nome e Cognome Autorità</label><br>
+  <input type="text" name="nome_autorita" placeholder="Nome e Cognome Autorità Disciplinare">
+  <br><br>
+
+  <label>Qualifica / Grado</label><br>
+  <input type="text" name="grado_autorita" placeholder="Grado / Funzione Autorità">
+  <br><br>
+
+  <label>Data di emissione</label><br>
+  <input type="text" name="data_firma_autorita" placeholder="gg/mm/aaaa">
+  <br><br>
+
+  <hr>
+
+  <h4>Dipendente destinatario (per ricevuta)</h4>
+
+  <label>Nome e Cognome Destinatario</label><br>
+  <input type="text" name="nome_firma_destinatario" placeholder="Nome e Cognome destinatario">
+  <br><br>
+
+  <label>Grado / Qualifica</label><br>
+  <input type="text" name="grado_firma_destinatario" placeholder="Grado destinatario">
+  <br><br>
+
+  <label>Data di ricezione</label><br>
+  <input type="text" name="data_ricezione" placeholder="gg/mm/aaaa">
+  <br><br>
+
 
   <button type="submit">Genera Documento</button>
 </form>
