@@ -1,48 +1,28 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <title>Generatore Documento</title>
-</head>
-<body>
-
-<h2>Test Generazione Documento</h2>
-
 <form id="docForm">
-  <input name="nome" placeholder="Nome e Cognome" required><br><br>
-  <input name="codice" placeholder="Codice Identificativo" required><br><br>
-  <textarea name="motivazione" placeholder="Motivazione"></textarea><br><br>
 
+  <h3>Dati Destinatario</h3>
+  <input name="nome" placeholder="Nome e Cognome destinatario" required><br><br>
+  <input name="codice" placeholder="Codice identificativo" required><br><br>
+  <input name="grado" placeholder="Ruolo / Qualifica / Grado"><br><br>
+  <input name="ente" placeholder="Agenzia / Reparto di appartenenza"><br><br>
+
+  <h3>Dati Procedimento</h3>
+  <input name="protocollo" placeholder="Numero di Protocollo (opzionale)"><br><br>
+  <input name="data_emissione" placeholder="Data di emissione (gg/mm/aaaa)"><br><br>
+  <input name="data_rilascio" placeholder="Data contestazione"><br><br>
+  <input name="id_discord" placeholder="PEC / ID Discord"><br><br>
+
+  <h3>Descrizione</h3>
+  <textarea name="motivazione" rows="5" placeholder="Descrizione della condotta"></textarea><br><br>
+
+  <h3>Sanzione</h3>
   <select name="sanzione">
-    <option>Ammonimento ufficiale (Warning)</option>
     <option>Richiamo scritto (Censura formale)</option>
+    <option>Ammonimento ufficiale (Warning)</option>
+    <option>Sospensione dal servizio senza retribuzione per n. ___ giorni</option>
+    <option>Licenziamento disciplinare (Termination of Employment)</option>
+    <option>Accettazione di dimissioni volontarie (Voluntary Separation)</option>
   </select><br><br>
 
   <button type="submit">Genera Documento</button>
 </form>
-
-<p id="result"></p>
-
-<script>
-const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzbkCItbKKiX0aHRhdOFgBSEobPs-7TFX8JPY3lSWeuBxUnPAynVGDYKNcSo9r7vgQc/exec";
-
-document.getElementById("docForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const data = Object.fromEntries(new FormData(e.target).entries());
-  document.getElementById("result").innerText = "Invio in corso...";
-
-  const res = await fetch(WEBAPP_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
-
-  const json = await res.json();
-  document.getElementById("result").innerText =
-    json.ok ? "Documento creato!" : "Errore: " + json.error;
-});
-</script>
-
-</body>
-</html>
