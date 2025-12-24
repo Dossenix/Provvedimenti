@@ -153,4 +153,45 @@
 
 
   <button type="submit">Genera Documento</button>
+  <p id="result"></p>
+
 </form>
+
+<script>
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbziP_060_f0RtFCfmVrLXTbs3T5NNmtwU9S_CfX0IkjG9izz7uylJ0wOPfixhh1_MX-Og/exec";
+
+document.getElementById("docForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
+  const resultBox = document.getElementById("result");
+  if (resultBox) resultBox.innerText = "Generazione in corso...";
+
+  try {
+    const response = await fetch(WEBAPP_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    const json = await response.json();
+
+    if (json.ok) {
+      if (resultBox) {
+        resultBox.innerHTML =
+          `✅ Documento creato<br>
+           <a href="${json.docUrl}" target="_blank">Apri Google Doc</a>
+           ${json.pdfUrl ? `<br><a href="${json.pdfUrl}" target="_blank">Scarica PDF</a>` : ""}`;
+      }
+    } else {
+      if (resultBox) resultBox.innerText = "❌ Errore: " + json.error;
+    }
+
+  } catch (err) {
+    if (resultBox) resultBox.innerText = "❌ Errore di connessione";
+  }
+});
+</script>
